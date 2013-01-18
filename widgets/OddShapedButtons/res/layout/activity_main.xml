@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#99cc00" >
+
+    <view
+        android:id="@+id/whiteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        class="com.luksprog.oddshapedbuttons.MainActivity$PassThroughButton"
+        android:background="@drawable/sp_selector_white" />
+
+    <view
+        android:id="@+id/blackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        class="com.luksprog.oddshapedbuttons.MainActivity$PassThroughButton"
+        android:background="@drawable/sp_selector_black" />
+
+</FrameLayout>
