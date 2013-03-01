@@ -6,15 +6,15 @@
 
     <view
         android:id="@+id/whiteBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         class="com.luksprog.oddshapedbuttons.MainActivity$PassThroughButton"
         android:background="@drawable/sp_selector_white" />
 
     <view
         android:id="@+id/blackBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         class="com.luksprog.oddshapedbuttons.MainActivity$PassThroughButton"
         android:background="@drawable/sp_selector_black" />
 

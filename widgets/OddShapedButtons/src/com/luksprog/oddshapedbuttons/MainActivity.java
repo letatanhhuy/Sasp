@@ -1,16 +1,16 @@
 /*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.luksprog.oddshapedbuttons;
 
 import android.app.Activity;
@@ -63,6 +63,8 @@ public class MainActivity extends Activity {
 
 	public static class PassThroughButton extends Button {
 
+		private Bitmap mBitmap;
+
 		public PassThroughButton(Context context, AttributeSet attrs) {
 			super(context, attrs);
 		}
@@ -70,15 +72,25 @@ public class MainActivity extends Activity {
 		@Override
 		public boolean onTouchEvent(MotionEvent event) {
 			if (event.getAction() == MotionEvent.ACTION_DOWN) {
-				final StateListDrawable bkg = (StateListDrawable) getBackground();
-				final Bitmap b = ((BitmapDrawable) bkg.getCurrent())
-						.getBitmap();
-				int color = b.getPixel((int) event.getX(), (int) event.getY());
+				int color = mBitmap.getPixel((int) event.getX(),
+						(int) event.getY());
 				if (color == 0) {
 					return false;
 				}
 			}
 			return super.onTouchEvent(event);
+		}
+
+		@Override
+		protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+			if (w == 0 && h == 0 && oldw == 0 && oldh == 0) {
+				super.onSizeChanged(w, h, oldw, oldh);
+			} else {
+				final StateListDrawable bkg = (StateListDrawable) getBackground();
+				mBitmap = Bitmap.createScaledBitmap(
+						((BitmapDrawable) bkg.getCurrent()).getBitmap(),
+						getWidth(), getHeight(), true);
+			}
 		}
 
 	}
