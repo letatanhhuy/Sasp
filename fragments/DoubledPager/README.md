@@ -1,0 +1,1 @@
+Simple project on how to handle a single page/ double page ViewPager by using two ViewPagers.
