@@ -23,6 +23,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
@@ -64,6 +65,10 @@ public class MainActivity extends FragmentActivity {
 			mBookPages.add("Book Page no." + i);
 		}
 	}
+	
+	public boolean isLandscape() {
+		return mIsLandscape;
+	}
 
 	/**
 	 * Our custom adapter class that will be used.
@@ -79,7 +84,7 @@ public class MainActivity extends FragmentActivity {
 
 		@Override
 		public Fragment getItem(int position) {
-			Bundle args = new Bundle();
+			Bundle args = new Bundle();			
 			// get the fragment but also pass the position to them
 			if (mIsLandscape) {
 				DoublePageFragment doublePageFragment = new DoublePageFragment();
@@ -128,7 +133,7 @@ public class MainActivity extends FragmentActivity {
 	 *            we can use it directly)
 	 * @return the data
 	 */
-	public CharSequence getSinglePage(int position) {
+	public CharSequence getSinglePage(int position) {		
 		return mBookPages.get(position);
 	}
 
@@ -140,7 +145,7 @@ public class MainActivity extends FragmentActivity {
 	 *            calculate the right position)
 	 * @return the data
 	 */
-	public String[] getDoublePage(int position) {
+	public String[] getDoublePage(int position) {		
 		// careful as we could have an odd number of pages
 		String[] data = new String[2];
 		data[0] = mBookPages.get(position * 2);

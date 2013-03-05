@@ -13,8 +13,10 @@
  */
 package com.luskprog.doubledpager;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,21 +31,27 @@ import android.widget.TextView;
  */
 public class DoublePageFragment extends Fragment {
 
+	private boolean mIsTheProperOrientation = false;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		// get the data array as we have to show text for two pages.
-		String[] data = ((MainActivity) getActivity())
-				.getDoublePage(getArguments().getInt("position"));
+			Bundle savedInstanceState) {		
+		MainActivity act = (MainActivity) getActivity();
+		mIsTheProperOrientation = act.isLandscape();		
 		// layout containing two TextView simulating two Pages text
 		LinearLayout ll = new LinearLayout(getActivity());
 		ll.setOrientation(LinearLayout.VERTICAL);
-		TextView tv = new TextView(getActivity());
-		tv.setText(data[0]);
-		ll.addView(tv);
-		tv = new TextView(getActivity());
-		tv.setText(data[1]);
-		ll.addView(tv);
+		TextView tv1 = new TextView(getActivity());		
+		TextView tv2 = new TextView(getActivity());
+		if (mIsTheProperOrientation) {
+			// get the data array as we have to show text for two pages.
+			String[] data = ((MainActivity) getActivity())
+					.getDoublePage(getArguments().getInt("position"));
+			tv1.setText(data[0]);
+			tv2.setText(data[1]);
+		}
+		ll.addView(tv1);
+		ll.addView(tv2);
 		return ll;
 	}
 

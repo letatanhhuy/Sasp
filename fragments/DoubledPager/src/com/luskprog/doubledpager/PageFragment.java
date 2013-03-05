@@ -13,8 +13,10 @@
  */
 package com.luskprog.doubledpager;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,13 +30,20 @@ import android.widget.TextView;
  */
 public class PageFragment extends Fragment {
 
+	private boolean mIsTheProperOrientation = false;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		MainActivity act = (MainActivity) getActivity();
+		mIsTheProperOrientation = !act.isLandscape();
 		TextView tv = new TextView(getActivity());
-		// get the text for this page from the activity
-		tv.setText(((MainActivity) getActivity()).getSinglePage(getArguments()
-				.getInt("position")));
+		// get the text for this page from the activity only if we are in the
+		// proper orientation(portrait in this case)
+		if (mIsTheProperOrientation) {
+			tv.setText(((MainActivity) getActivity())
+					.getSinglePage(getArguments().getInt("position")));
+		}
 		return tv;
 	}
 
