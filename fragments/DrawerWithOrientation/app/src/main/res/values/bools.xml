@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- boolean value to signal(based on the resource used) the orientation of the device(false for portrait) -->
+    <bool name="current">false</bool>
+</resources>
