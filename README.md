@@ -1,3 +1,5 @@
+# This project is discontinued and kept to not break links pointing to it.
+
 ## SASP
 
 A set of varios Android projects.
